@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nice Day Ascenseurs | Installation, Réparation et Entretien d'Ascenseurs à Casablanca</title>
+<meta name="description" content="Nice Day Ascenseurs : installation, réparation et entretien d'ascenseurs à Casablanca et partout au Maroc. Devis gratuit, intervention rapide.">
+<meta name="theme-color" content="#1D70B8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { display: ['"Plus Jakarta Sans"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      colors: { brand: { DEFAULT: '#1D70B8', dark: '#0284C7', navy: '#0F172A', soft: '#F8FAFC' } }
+    }
+  }
+}
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; color: #0F172A; background: #fff; }
+  h1,h2,h3,h4,.font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .glass { background: rgba(255,255,255,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .shaft {
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 48px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 48px),
+      linear-gradient(135deg, #0F172A 0%, #12304f 55%, #1D70B8 130%);
+  }
+  @keyframes lift { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-120px) } }
+  .cab { animation: lift 7s ease-in-out infinite; }
+  @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55) } 100% { box-shadow: 0 0 0 18px rgba(37,211,102,0) } }
+  .wa-pulse { animation: pulseRing 2s infinite; }
+  .field { width: 100%; border: 1px solid #CBD5E1; border-radius: .75rem; padding: .75rem 1rem; background: #fff; transition: border-color .2s, box-shadow .2s; }
+  .field:focus { outline: none; border-color: #1D70B8; box-shadow: 0 0 0 3px rgba(29,112,184,.18); }
+  .field.invalid { border-color: #DC2626; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cab, .wa-pulse { animation: none; } }
+</style>
+</head>
+<body class="bg-white antialiased">
+
+<!-- SVG logo symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="nd-mark" viewBox="0 0 64 64">
+      <path d="M9 7 H29 A25 25 0 0 1 29 57 H9 Z" fill="none" stroke="#1D70B8" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M21 46 V20 L37 44 V30" fill="none" stroke="#0F172A" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M37 17 L45 29 H29 Z" fill="#0284C7"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Top info bar -->
+<div class="bg-brand-navy text-slate-200 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-1">
+      <a href="tel:+212668111287" class="flex items-center gap-2 hover:text-white"><i data-lucide="phone" class="w-4 h-4"></i>06 68 11 12 87</a>
+      <a href="mailto:Contact@nicedayascenseur.com" class="hidden sm:flex items-center gap-2 hover:text-white"><i data-lucide="mail" class="w-4 h-4"></i>Contact@nicedayascenseur.com</a>
+    </div>
+    <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i>Casablanca, Maroc</span>
+  </div>
+</div>
+
+<!-- Sticky header -->
+<header id="header" class="sticky top-0 z-50 glass border-b border-slate-200/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+    <a href="#accueil" class="flex items-center gap-3" aria-label="Nice Day Ascenseurs, accueil">
+      <svg class="w-12 h-12" aria-hidden="true"><use href="#nd-mark"/></svg>
+      <span class="leading-none">
+        <span class="block font-display font-extrabold text-xl tracking-wide text-brand-navy">NICE DAY</span>
+        <span class="block text-[11px] font-semibold tracking-[.32em] text-brand uppercase mt-1">Ascenseurs</span>
+      </span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 font-medium text-slate-700" aria-label="Navigation principale">
+      <a class="nav-link hover:text-brand transition" href="#accueil">Accueil</a>
+      <a class="nav-link hover:text-brand transition" href="#services">Services</a>
+      <a class="nav-link hover:text-brand transition" href="#expertise">Réalisations &amp; Expertise</a>
+      <a class="nav-link hover:text-brand transition" href="#contact">Contact</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand/25 transition">
+        Demander un Devis <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <button id="menuBtn" class="lg:hidden p-2 rounded-lg hover:bg-slate-100" aria-label="Ouvrir le menu" aria-expanded="false">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white">
+    <div class="px-4 py-4 flex flex-col gap-1 font-medium">
+      <a class="m-link py-3 px-3 rounded-lg hover:bg-slate-50" href="#accueil">Accueil</a>
+      <a class="m-link py-3 px-3 rounded-lg hover:bg-slate-50" href="#services">Services</a>
+      <a class="m-link py-3 px-3 rounded-lg hover:bg-slate-50" href="#expertise">Réalisations &amp; Expertise</a>
+      <a class="m-link py-3 px-3 rounded-lg hover:bg-slate-50" href="#contact">Contact</a>
+      <a class="m-link mt-2 text-center bg-brand text-white font-semibold px-5 py-3 rounded-xl" href="#contact">Demander un Devis</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- Hero -->
+<section id="accueil" class="shaft relative overflow-hidden text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase bg-white/10 border border-white/15 rounded-full px-4 py-1.5">
+        <i data-lucide="shield-check" class="w-4 h-4"></i> Casablanca &amp; tout le Maroc
+      </span>
+      <h1 class="mt-6 text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.1]">
+        Installation, Réparation et Entretien d'Ascenseurs au Maroc
+      </h1>
+      <p class="mt-6 text-lg text-slate-300 max-w-xl leading-relaxed">
+        Sécurité, fiabilité et intervention rapide à Casablanca et partout au Maroc. Nice Day Ascenseurs vous accompagne de l'étude technique à la maintenance de votre installation.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row gap-4">
+        <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-white text-brand-navy font-bold px-7 py-4 rounded-xl hover:bg-slate-100 transition shadow-xl">
+          <i data-lucide="file-text" class="w-5 h-5"></i> Demander un Devis Gratuit
+        </a>
+        <a href="tel:+212668111287" class="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white hover:bg-white/10 font-bold px-7 py-4 rounded-xl transition">
+          <i data-lucide="phone-call" class="w-5 h-5"></i> Appeler : 06 68 11 12 87
+        </a>
+      </div>
+    </div>
+
+    <!-- Elevator visual -->
+    <div class="reveal hidden lg:flex justify-center" aria-hidden="true">
+      <div class="relative w-72 h-[26rem] rounded-3xl border border-white/15 bg-white/5 overflow-hidden">
+        <div class="absolute inset-y-0 left-6 w-px bg-white/20"></div>
+        <div class="absolute inset-y-0 right-6 w-px bg-white/20"></div>
+        <div class="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-white/10"></div>
+        <div class="cab absolute left-1/2 -translate-x-1/2 bottom-10 w-40 h-52 rounded-xl bg-gradient-to-b from-slate-100 to-slate-300 shadow-2xl border border-white/60 flex">
+          <div class="flex-1 border-r border-slate-400/60 flex items-center justify-center"><div class="w-1 h-24 bg-slate-400/50 rounded"></div></div>
+          <div class="flex-1 flex items-center justify-center"><div class="w-1 h-24 bg-slate-400/50 rounded"></div></div>
+          <div class="absolute -top-1 left-1/2 -translate-x-1/2 -translate-y-full w-0.5 h-[30rem] bg-white/30"></div>
+        </div>
+        <div class="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-brand-navy/80 border border-white/15 rounded-lg px-3 py-1.5 text-xs font-semibold">
+          <i data-lucide="chevrons-up" class="w-4 h-4 text-sky-400"></i> Étage en service
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust strip -->
+  <div class="border-t border-white/10 bg-black/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 grid sm:grid-cols-3 gap-5">
+      <div class="flex items-center gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center"><i data-lucide="clock" class="w-5 h-5 text-sky-300"></i></span><div><p class="font-display font-bold">Intervention Rapide 24/7</p><p class="text-sm text-slate-400">Dépannage en urgence</p></div></div>
+      <div class="flex items-center gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center"><i data-lucide="badge-check" class="w-5 h-5 text-sky-300"></i></span><div><p class="font-display font-bold">Normes de Sécurité CE</p><p class="text-sm text-slate-400">Équipements conformes</p></div></div>
+      <div class="flex items-center gap-4"><span class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center"><i data-lucide="ruler" class="w-5 h-5 text-sky-300"></i></span><div><p class="font-display font-bold">Devis Gratuit &amp; Étude Technique</p><p class="text-sm text-slate-400">Sans engagement</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="py-20 lg:py-28 bg-brand-soft">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="max-w-2xl reveal">
+      <p class="text-brand font-semibold uppercase tracking-widest text-sm">Nos services</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold">Une expertise complète pour vos ascenseurs</h2>
+      <p class="mt-4 text-slate-600 text-lg">De la conception à la remise en service, nous couvrons chaque étape du cycle de vie de votre installation.</p>
+    </div>
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <article class="reveal group bg-white rounded-2xl p-8 border border-slate-200 hover:border-brand/40 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand/10 transition duration-300">
+        <span class="w-14 h-14 rounded-2xl bg-brand/10 text-brand flex items-center justify-center group-hover:bg-brand group-hover:text-white transition"><i data-lucide="building-2" class="w-7 h-7"></i></span>
+        <h3 class="mt-6 text-xl font-bold">Installation d'Ascenseurs</h3>
+        <p class="mt-3 text-slate-600 leading-relaxed">Étude sur mesure, fourniture et montage d'ascenseurs électriques et hydrauliques pour immeubles résidentiels, bureaux et locaux commerciaux.</p>
+        <a href="#contact" data-project="Installation neuve" class="project-link mt-6 inline-flex items-center gap-2 font-semibold text-brand">Demander un devis <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i></a>
+      </article>
+      <article class="reveal group bg-white rounded-2xl p-8 border border-slate-200 hover:border-brand/40 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand/10 transition duration-300">
+        <span class="w-14 h-14 rounded-2xl bg-brand/10 text-brand flex items-center justify-center group-hover:bg-brand group-hover:text-white transition"><i data-lucide="settings-2" class="w-7 h-7"></i></span>
+        <h3 class="mt-6 text-xl font-bold">Entretien &amp; Maintenance</h3>
+        <p class="mt-3 text-slate-600 leading-relaxed">Contrats de maintenance préventive périodique pour assurer la sécurité des usagers et prolonger la durée de vie des installations.</p>
+        <a href="#contact" data-project="Contrat d'entretien" class="project-link mt-6 inline-flex items-center gap-2 font-semibold text-brand">Demander un devis <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i></a>
+      </article>
+      <article class="reveal group bg-white rounded-2xl p-8 border border-slate-200 hover:border-brand/40 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand/10 transition duration-300">
+        <span class="w-14 h-14 rounded-2xl bg-brand/10 text-brand flex items-center justify-center group-hover:bg-brand group-hover:text-white transition"><i data-lucide="wrench" class="w-7 h-7"></i></span>
+        <h3 class="mt-6 text-xl font-bold">Réparation &amp; Dépannage</h3>
+        <p class="mt-3 text-slate-600 leading-relaxed">Diagnostic précis, remplacement de pièces et remise en service rapide à Casablanca et ses environs.</p>
+        <a href="#contact" data-project="Réparation urgente" class="project-link mt-6 inline-flex items-center gap-2 font-semibold text-brand">Demander un devis <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- À propos & engagements -->
+<section id="expertise" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-5 gap-14">
+    <div class="lg:col-span-2 reveal">
+      <p class="text-brand font-semibold uppercase tracking-widest text-sm">À propos &amp; engagements</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold">Rigueur technique et suivi personnalisé</h2>
+      <p class="mt-5 text-slate-600 text-lg leading-relaxed">Chez Nice Day Ascenseurs, chaque projet bénéficie d'un suivi technique et commercial personnalisé, assuré par <strong class="text-brand-navy">Abdelali Es-Samaali</strong>, Technico-commercial. Un interlocuteur unique, à l'écoute, du premier diagnostic jusqu'à la maintenance.</p>
+      <ul class="mt-8 space-y-4">
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-brand shrink-0"></i><span>Respect strict des normes de sécurité en vigueur</span></li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-brand shrink-0"></i><span>Interventions rapides à Casablanca et dans tout le Maroc</span></li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-brand shrink-0"></i><span>Devis détaillé, clair et sans surprise</span></li>
+      </ul>
+    </div>
+    <div class="lg:col-span-3 grid sm:grid-cols-2 gap-5">
+      <div class="reveal rounded-2xl bg-brand-soft border border-slate-200 p-7 relative">
+        <span class="font-display text-5xl font-extrabold text-brand/15 absolute top-4 right-5">01</span>
+        <span class="w-12 h-12 rounded-xl bg-white shadow flex items-center justify-center text-brand"><i data-lucide="search-check" class="w-6 h-6"></i></span>
+        <h3 class="mt-5 font-bold text-lg">Visite &amp; Diagnostic</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Visite sur site, relevé des contraintes et analyse de vos besoins.</p>
+      </div>
+      <div class="reveal rounded-2xl bg-brand-soft border border-slate-200 p-7 relative">
+        <span class="font-display text-5xl font-extrabold text-brand/15 absolute top-4 right-5">02</span>
+        <span class="w-12 h-12 rounded-xl bg-white shadow flex items-center justify-center text-brand"><i data-lucide="clipboard-list" class="w-6 h-6"></i></span>
+        <h3 class="mt-5 font-bold text-lg">Devis Détaillé</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Proposition technique et financière transparente, adaptée à votre projet.</p>
+      </div>
+      <div class="reveal rounded-2xl bg-brand-soft border border-slate-200 p-7 relative">
+        <span class="font-display text-5xl font-extrabold text-brand/15 absolute top-4 right-5">03</span>
+        <span class="w-12 h-12 rounded-xl bg-white shadow flex items-center justify-center text-brand"><i data-lucide="hard-hat" class="w-6 h-6"></i></span>
+        <h3 class="mt-5 font-bold text-lg">Installation / Intervention</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Montage ou réparation par des techniciens qualifiés, dans les délais convenus.</p>
+      </div>
+      <div class="reveal rounded-2xl bg-brand-soft border border-slate-200 p-7 relative">
+        <span class="font-display text-5xl font-extrabold text-brand/15 absolute top-4 right-5">04</span>
+        <span class="w-12 h-12 rounded-xl bg-white shadow flex items-center justify-center text-brand"><i data-lucide="refresh-cw" class="w-6 h-6"></i></span>
+        <h3 class="mt-5 font-bold text-lg">Suivi &amp; Maintenance</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Visites préventives régulières pour garantir sécurité et longévité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Devis & contact -->
+<section id="contact" class="py-20 lg:py-28 bg-brand-soft">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="max-w-2xl reveal">
+      <p class="text-brand font-semibold uppercase tracking-widest text-sm">Devis &amp; Contact</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold">Parlons de votre projet</h2>
+      <p class="mt-4 text-slate-600 text-lg">Remplissez le formulaire : nous vous répondons rapidement avec un devis gratuit.</p>
+    </div>
+    <div class="mt-12 grid lg:grid-cols-2 gap-8">
+      <!-- Form -->
+      <form id="quoteForm" novalidate class="reveal bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-5">
+        <div>
+          <label for="nom" class="block text-sm font-semibold mb-1.5">Nom complet <span class="text-red-600">*</span></label>
+          <input id="nom" name="nom" type="text" autocomplete="name" class="field" placeholder="Votre nom et prénom">
+          <p class="err hidden text-sm text-red-600 mt-1">Veuillez saisir votre nom complet.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="tel" class="block text-sm font-semibold mb-1.5">Téléphone <span class="text-red-600">*</span></label>
+            <input id="tel" name="tel" type="tel" autocomplete="tel" class="field" placeholder="06 00 00 00 00">
+            <p class="err hidden text-sm text-red-600 mt-1">Numéro invalide (ex. 06 12 34 56 78).</p>
+          </div>
+          <div>
+            <label for="ville" class="block text-sm font-semibold mb-1.5">Ville <span class="text-red-600">*</span></label>
+            <input id="ville" name="ville" type="text" class="field" placeholder="Casablanca">
+            <p class="err hidden text-sm text-red-600 mt-1">Veuillez indiquer votre ville.</p>
+          </div>
+        </div>
+        <div>
+          <label for="type" class="block text-sm font-semibold mb-1.5">Type de projet <span class="text-red-600">*</span></label>
+          <select id="type" name="type" class="field">
+            <option value="">Sélectionnez…</option>
+            <option>Installation neuve</option>
+            <option>Contrat d'entretien</option>
+            <option>Réparation urgente</option>
+          </select>
+          <p class="err hidden text-sm text-red-600 mt-1">Veuillez choisir un type de projet.</p>
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-semibold mb-1.5">Message</label>
+          <textarea id="message" name="message" rows="4" class="field" placeholder="Décrivez votre besoin (nombre d'étages, type de bâtiment, panne…)"></textarea>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 pt-1">
+          <button type="submit" class="flex-1 inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-brand/25 transition">
+            <i data-lucide="send" class="w-5 h-5"></i> Envoyer la demande
+          </button>
+          <button type="button" id="waBtn" class="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white font-bold px-6 py-3.5 rounded-xl transition">
+            <i data-lucide="message-circle" class="w-5 h-5"></i> Envoyer directement via WhatsApp
+          </button>
+        </div>
+        <p class="text-xs text-slate-500">Vos informations sont utilisées uniquement pour répondre à votre demande.</p>
+      </form>
+
+      <!-- Contact card -->
+      <div class="reveal bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+        <div class="p-6 sm:p-8 space-y-5">
+          <h3 class="text-xl font-bold">Nous contacter</h3>
+          <div class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-xl bg-brand/10 text-brand flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5"></i></span><div><p class="font-semibold">Adresse</p><p class="text-slate-600">N° 126 GH Lotissement Al Badr, Casablanca - Maroc</p></div></div>
+          <div class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-xl bg-brand/10 text-brand flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5"></i></span><div><p class="font-semibold">Téléphone / WhatsApp</p><a href="tel:+212668111287" class="text-slate-600 hover:text-brand">06 68 11 12 87</a><p class="text-sm text-slate-500">Abdelali Es-Samaali, Technico-commercial</p></div></div>
+          <div class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-xl bg-brand/10 text-brand flex items-center justify-center"><i data-lucide="mail" class="w-5 h-5"></i></span><div><p class="font-semibold">Email</p><a href="mailto:Contact@nicedayascenseur.com" class="text-slate-600 hover:text-brand break-all">Contact@nicedayascenseur.com</a></div></div>
+        </div>
+        <iframe title="Localisation Nice Day Ascenseurs - Lotissement Al Badr, Casablanca" class="w-full flex-1 min-h-[280px] border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Lotissement%20Al%20Badr%2C%20Casablanca%2C%20Maroc&z=15&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-brand-navy text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div>
+      <div class="flex items-center gap-3">
+        <svg class="w-12 h-12 bg-white rounded-xl p-1" aria-hidden="true"><use href="#nd-mark"/></svg>
+        <span class="leading-none"><span class="block font-display font-extrabold text-xl text-white tracking-wide">NICE DAY</span><span class="block text-[11px] font-semibold tracking-[.32em] text-sky-400 uppercase mt-1">Ascenseurs</span></span>
+      </div>
+      <p class="mt-5 text-sm leading-relaxed text-slate-400 max-w-xs">Installation, réparation et entretien d'ascenseurs à Casablanca et partout au Maroc.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-4">Liens rapides</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-white" href="#accueil">Accueil</a></li>
+        <li><a class="hover:text-white" href="#services">Services</a></li>
+        <li><a class="hover:text-white" href="#expertise">Réalisations &amp; Expertise</a></li>
+        <li><a class="hover:text-white" href="#contact">Contact &amp; Devis</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-4">Contact</h4>
+      <ul class="space-y-3 text-sm">
+        <li class="flex gap-2"><i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0"></i>N° 126 GH Lotissement Al Badr, Casablanca - Maroc</li>
+        <li class="flex gap-2"><i data-lucide="phone" class="w-4 h-4 mt-0.5 shrink-0"></i><a href="tel:+212668111287" class="hover:text-white">06 68 11 12 87</a></li>
+        <li class="flex gap-2"><i data-lucide="mail" class="w-4 h-4 mt-0.5 shrink-0"></i><a href="mailto:Contact@nicedayascenseur.com" class="hover:text-white break-all">Contact@nicedayascenseur.com</a></li>
+        <li class="flex gap-2"><i data-lucide="globe" class="w-4 h-4 mt-0.5 shrink-0"></i>www.nicedayascenseur.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-sm text-slate-500">© 2026 Nice Day Ascenseurs - Tous droits réservés</div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/212668111287" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp"
+   class="group fixed bottom-5 right-5 z-50 flex items-center">
+  <span class="mr-3 hidden sm:block opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition bg-brand-navy text-white text-sm font-medium px-4 py-2 rounded-lg shadow-lg whitespace-nowrap">Discutons sur WhatsApp</span>
+  <span class="wa-pulse w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-xl">
+    <svg viewBox="0 0 32 32" class="w-8 h-8" fill="#fff" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.4 4 15.03c0 2.12.55 4.19 1.6 6.01L4 28l7.12-1.87a12 12 0 0 0 4.92 1.05h.01C22.68 27.18 28 21.78 28 15.15 28 11.95 26.75 8.94 24.5 6.68A11.9 11.9 0 0 0 16.04 3Zm0 21.97h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.24-.38a9.9 9.9 0 0 1-1.52-5.3c0-5.47 4.46-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.91a9.85 9.85 0 0 1 2.9 7.02c0 5.47-4.46 9.93-9.92 9.93Zm5.44-7.43c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+  </span>
+</a>
+
+<!-- Toast -->
+<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 z-[60] hidden w-[calc(100%-2rem)] max-w-md" role="status" aria-live="polite">
+  <div class="bg-brand-navy text-white rounded-2xl shadow-2xl p-5 flex gap-4 items-start">
+    <span class="w-10 h-10 shrink-0 rounded-full bg-emerald-500 flex items-center justify-center"><i data-lucide="check" class="w-5 h-5"></i></span>
+    <div class="flex-1">
+      <p class="font-bold">Demande bien reçue !</p>
+      <p id="toastText" class="text-sm text-slate-300 mt-1"></p>
+    </div>
+    <button id="toastClose" aria-label="Fermer" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('hidden') === false;
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('.m-link').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(el); });
+
+  // Active nav link
+  const sections = ['accueil', 'services', 'expertise', 'contact'].map(id => document.getElementById(id));
+  const links = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + 140;
+    let current = sections[0].id;
+    sections.forEach(s => { if (s.offsetTop <= y) current = s.id; });
+    links.forEach(l => l.classList.toggle('text-brand', l.getAttribute('href') === '#' + current));
+  }, { passive: true });
+
+  // Pre-select project from service cards
+  document.querySelectorAll('.project-link').forEach(a => a.addEventListener('click', () => {
+    document.getElementById('type').value = a.dataset.project;
+  }));
+
+  // Form
+  const form = document.getElementById('quoteForm');
+  const fields = {
+    nom: v => v.trim().length >= 3,
+    tel: v => /^(?:(?:\+|00)212|0)[\s.-]?[5-7](?:[\s.-]?\d){8}$/.test(v.trim()),
+    ville: v => v.trim().length >= 2,
+    type: v => v !== ''
+  };
+  function validate() {
+    let ok = true;
+    Object.entries(fields).forEach(([id, test]) => {
+      const el = document.getElementById(id);
+      const valid = test(el.value);
+      el.classList.toggle('invalid', !valid);
+      el.parentElement.querySelector('.err').classList.toggle('hidden', valid);
+      if (!valid) ok = false;
+    });
+    return ok;
+  }
+  Object.keys(fields).forEach(id => document.getElementById(id).addEventListener('input', e => {
+    if (fields[id](e.target.value)) { e.target.classList.remove('invalid'); e.target.parentElement.querySelector('.err').classList.add('hidden'); }
+  }));
+
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(text) {
+    document.getElementById('toastText').textContent = text;
+    toast.classList.remove('hidden');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.add('hidden'), 7000);
+  }
+  document.getElementById('toastClose').addEventListener('click', () => toast.classList.add('hidden'));
+
+  function buildMessage() {
+    const g = id => document.getElementById(id).value.trim();
+    return `Bonjour Nice Day Ascenseurs,\n\nJe souhaite un devis.\n• Nom : ${g('nom')}\n• Téléphone : ${g('tel')}\n• Ville : ${g('ville')}\n• Type de projet : ${g('type')}\n• Message : ${g('message') || '—'}`;
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validate()) { form.querySelector('.invalid')?.focus(); return; }
+    // Envoi par email (ouvre le client mail). Pour un envoi serveur, brancher Formspree / EmailJS ici.
+    const subject = encodeURIComponent('Demande de devis - ' + document.getElementById('type').value);
+    const body = encodeURIComponent(buildMessage());
+    window.location.href = `mailto:Contact@nicedayascenseur.com?subject=${subject}&body=${body}`;
+    showToast('Merci ' + document.getElementById('nom').value.trim().split(' ')[0] + ', nous vous recontactons très rapidement.');
+    form.reset();
+  });
+
+  document.getElementById('waBtn').addEventListener('click', () => {
+    if (!validate()) { form.querySelector('.invalid')?.focus(); return; }
+    window.open('https://wa.me/212668111287?text=' + encodeURIComponent(buildMessage()), '_blank', 'noopener');
+  });
+</script>
+</body>
+</html>
